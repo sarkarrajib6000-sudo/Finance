@@ -110,6 +110,7 @@ export interface ComplianceIssue {
   ruleName: string;
   severity: ComplianceSeverity;
   description: string;
+  isBlocking?: boolean;
   resolved: boolean;
   flaggedAt: string; // ISO timestamp string
 }
@@ -123,6 +124,6 @@ export interface AuditLog {
   action: string; // e.g. "CREATE_PAYROLL", "APPROVE_PAYROLL", "RESOLVE_FLAG"
   performedBy: string; // User ID or Email
   targetId: string; // Associated entity ID (payrollRunId, employeeId, flagId, etc.)
-  details: Record<string, unknown>; // Action context payload
+  details: Record<string, unknown> | string; // Action context payload
   timestamp: string; // ISO timestamp string
 }
