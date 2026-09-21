@@ -90,3 +90,129 @@ Enterprise tools like Workday and ADP cost ₹5–50 lakhs per year — unafford
 ---
 
 ## 🏗️ Architecture
+
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Tool |
+|---|---|
+| Frontend | React 19, TypeScript, Vite, Tailwind CSS |
+| Charts | Recharts |
+| Icons | lucide-react |
+| Routing | react-router-dom |
+| Database | Firebase Firestore (real-time) |
+| Auth | Firebase Auth (planned for Phase 6) |
+| AI | Gemini via `@google/genai` SDK |
+| PDF | jsPDF + jspdf-autotable |
+| Excel | SheetJS (`xlsx`) |
+| Deployment | Vercel |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
+- A Firebase account (free)
+- A Gemini API key (free from [aistudio.google.com](https://aistudio.google.com/apikey))
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/sarkarrajib6000-sudo/payshield.git
+cd payshield
+npm install
+cp .env.example .env
+
+VITE_FIREBASE_API_KEY=your_firebase_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+VITE_GEMINI_API_KEY=your_gemini_api_key
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
+
+npm run dev -- --host
+npx tsx --env-file=.env src/services/seedEmployees.ts
+npx tsx --env-file=.env src/services/seedAttendance.ts
+
+Up to ₹3L      → 0%
+₹3L–₹6L        → 5%
+₹6L–₹9L        → 10% + ₹15,000
+₹9L–₹12L       → 15% + ₹45,000
+₹12L–₹15L      → 20% + ₹90,000
+Above ₹15L     → 30% + ₹1,50,000
+
+payshield/
+├── src/
+│   ├── components/
+│   ├── context/
+│   ├── hooks/
+│   ├── lib/
+│   ├── services/
+│   ├── types/
+│   ├── pages/
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css
+├── .env.example
+├── .gitignore
+├── package.json
+├── tsconfig.json
+└── vite.config.ts
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /employees/{id} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null 
+        && request.auth.token.role == 'admin';
+    }
+    match /payrollRuns/{id} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null 
+        && request.auth.token.role in ['admin', 'manager'];
+    }
+    match /auditLogs/{id} {
+      allow read: if request.auth != null;
+      allow create: if true;
+      allow update, delete: if false;
+    }
+  }
+}
+
+---
+
+## ✅ What This Does
+
+1. Creates `README.md` in `~/projects/finance`
+2. Confirms it was created
+3. Shows file size and line count
+
+**Expected output:**
+
+
+---
+
+## 📤 Then Commit and Push
+
+```bash
+cd ~/projects/finance
+git add README.md
+git commit -m "Add professional README"
+git push
+https://github.com/sarkarrajib6000-sudo/payshield
