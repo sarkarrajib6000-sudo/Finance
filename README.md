@@ -216,3 +216,10 @@ git add README.md
 git commit -m "Add professional README"
 git push
 https://github.com/sarkarrajib6000-sudo/payshield
+
+## Copyright
+
+Copyright © 2026 Rajib Sarkar. All rights reserved.
+
+This project may not be copied, modified, distributed, sold, or used without
+prior written permission from the copyright holder.
